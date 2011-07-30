@@ -33,7 +33,7 @@
 				<ul>
 					<li class="x-84 left">
 						<a href="index.html" class="left" id="home">
-							<img src="images/icon.png" width="32" height="32"/>
+							<div class="sprite sprite-icon"></div>
 						</a>
 						<div id="next">
 							<h1>{{title}}</h1>
@@ -41,7 +41,7 @@
 					</li>
 					<li class="last right">
 						<a href="info.html" class="right" id="info">
-							<img src="images/info.png" width="32" height="32"/>
+							<div class="sprite sprite-info"></div>
 						</a>
 					</li>
 				</ul>
@@ -82,7 +82,7 @@
 				<ul id="results">
 					{{#each results}}
 					<li class="result">
-						<img src="images/{{Icon}}.png" height="37" width="32" style="float:left;margin-top:-2px;"/>
+						<div class="icon sprite-{{Icon}}"></div>
 						<div class="panel" tag="{{Lat}}_{{Long}}">
 							<div style="float:left;width:100%;">
 								<div style="margin-right:34px;">
@@ -105,7 +105,7 @@
 				<a href="#" class="back" style="display:{{canGoBack}};">&laquo;&nbsp;Back to results</a>
 				<div class="detail">
 					{{#with row}}
-					<img src="images/{{Icon}}.png" height="37" width="32" />
+					<div class="icon sprite-{{Icon}}"></div>
 					<div class="panel">
 						<h3>{{Facility_Name}}</h3>
 						<h4>{{Type}}</h4>

@@ -109,12 +109,12 @@ input {
 
 #header ul { width: 100%; }
 
-#header a.left img {
+#header a.left {
 	padding: 6px;
 	border-right: 1px solid #005F7E;
 }
 
-#header a.right img {
+#header a.right {
 	padding: 6px;
 	border-left: 1px solid #00BFFF;
 }
@@ -211,11 +211,6 @@ h3.home {
 	padding-bottom: 15px;
 	margin-bottom: 10px;
 	border-bottom: 1px dashed #CCC;
-}
-
-.result img {
-	float: left;
-	margin-top: -2px;
 }
 
 .panel {
@@ -330,3 +325,20 @@ h3.home {
 	left: 50%;
 	margin-left: -110px;
 }
+
+.icon {
+	height: 37px;
+	width: 32px;
+	float: left;
+	margin-top: -2px;
+	background: url('images/images.png') no-repeat top left;
+}
+
+.sprite { background: url('images/images.png') no-repeat top left; }
+
+.sprite-icon { background-position: 0 0; width: 32px; height: 32px; } 
+.sprite-info { background-position: -42px 0; width: 32px; height: 32px; } 
+.sprite-small_blue { background-position: -84px 0; width: 32px; height: 37px; } 
+.sprite-small_green { background-position: -126px 0; width: 32px; height: 37px; } 
+.sprite-small_purple, .sprite-small_yellow { background-position: -168px 0; width: 32px; height: 37px; } 
+.sprite-small_red { background-position: -210px 0; width: 32px; height: 37px; } 

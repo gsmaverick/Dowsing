@@ -97,8 +97,8 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 	 * Constructs the query url for returning the neccesary data
 	 * Query: SELECT * FROM {Dowsing.FusionTableId} ORDER BY 
 	 *        ST_DISTANCE(Lat, LATLNG({location.lat()},{location.lng()}))
-	 *        OFFSET {start} LIMIT 20;
-	 * Returns: The call returns the 20 closest locations as calculated by ST_DISTANCE
+	 *        OFFSET {start} LIMIT 10;
+	 * Returns: The call returns the 10 closest locations as calculated by ST_DISTANCE
 	 *
 	 */
 	constructQueryURL : function(location, start) {	
@@ -106,7 +106,7 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 		url    += "SELECT+%2A+FROM+" + Dowsing.FusionTableId;
 		url    += "+ORDER+BY+ST_DISTANCE%28Lat%2CLATLNG%28";
 		url    += encodeURIComponent(location.lat()) + "%2C" + encodeURIComponent(location.lng()) + "%29%29";
-		url    += "+OFFSET+" + start + "+LIMIT+20";
+		url    += "+OFFSET+" + start + "+LIMIT+10";
 		return url;
 	},
 
@@ -159,7 +159,9 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 	 */
 	display : function(tag) {
 		this.navigate("display/"+tag);
-		$("#content").append("<div class=\"loading\"></div>");
+		if (Dowsing.LastQuery != '') {
+			$("#content").append("<div class=\"loading\"></div>");
+		}
 
 		$.getJSON(this.constructDisplayURL(tag)+"&jsonCallback=?", this.processDetails);
 	},
@@ -170,7 +172,7 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 	 */
 	processDetails : function(results) {
 		row = results.table.rows[0];
-		_row = {};
+		var _row = {};
 		for (index in results.table.cols) {
 			/* Don't copy the window html */
 			if (results.table.cols[index].indexOf("Window") == -1) {
