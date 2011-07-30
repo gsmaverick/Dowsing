@@ -79,6 +79,7 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 		this.navigate("search/" + address);
 		/* Show a back link if in detail view */
 		Dowsing.LastQuery = address;
+		$("#content").append("<div class=\"loading\"></div>");
 
 		var self = this;
 		geocoder = new google.maps.Geocoder();
@@ -158,6 +159,8 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 	 */
 	display : function(tag) {
 		this.navigate("display/"+tag);
+		$("#content").append("<div class=\"loading\"></div>");
+
 		$.getJSON(this.constructDisplayURL(tag)+"&jsonCallback=?", this.processDetails);
 	},
 

@@ -317,3 +317,16 @@ h3.home {
 	padding-left: 8px;
 	padding-right: 8px;
 }
+
+.loading {
+	background: #666666 url('images/loading.gif') no-repeat center center;
+	position: absolute;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	border-radius: 8px;
+	height: 110px;
+	width: 220px;
+	top: 20%;
+	left: 50%;
+	margin-left: -110px;
+}
