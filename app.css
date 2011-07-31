@@ -202,15 +202,19 @@ h3.home {
 }
 
 /* Search result styling */
-#results li:last-child {
-	border-bottom: none;
-	margin-bottom: -20px;
+#results {
+	padding-bottom: 15px;	
+}
+
+#results li:first-child {
+	border-top: none;
+	margin-top: -15px;
 }
 
 .result {
-	padding-bottom: 15px;
-	margin-bottom: 10px;
-	border-bottom: 1px dashed #CCC;
+	padding-top: 15px;
+	margin-top: 10px;
+	border-top: 1px dashed #CCC;
 }
 
 .panel {
@@ -342,3 +346,12 @@ h3.home {
 .sprite-small_green { background-position: -126px 0; width: 32px; height: 37px; } 
 .sprite-small_purple, .sprite-small_yellow { background-position: -168px 0; width: 32px; height: 37px; } 
 .sprite-small_red { background-position: -210px 0; width: 32px; height: 37px; } 
+
+
+.prev, .next {
+	font-weight: bold;
+	font-size: 1.2em; 
+	margin-right: 13px;
+	margin-left: 2px;
+	text-decoration: none;
+}

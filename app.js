@@ -22,6 +22,12 @@ var Dowsing = {
 	 *
 	 */
 	LastQuery : '',
+	Page : 1,
+	/*
+	 * Number of results to return from Google
+	 * Fusion Table query
+	 */
+	Results : 5,
 	Views : {},
 	Routers : {},
 	Collections : {},
@@ -43,11 +49,12 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 	 * Defines all the possibles routes for the app
 	 */
 	routes : {
-		"" : "index",
-		"home" : "index",
-		"info" : "info",
-		"search/:address" : "search",
-		"display/:tag" : "display"
+		""                      : "index",
+		"home"                  : "index",
+		"info"                  : "info",
+		"search/:address"       : "search",
+		"search/:address/:page" : "search",
+		"display/:tag"          : "display"
 	},
 
 	/*
@@ -75,17 +82,21 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 		infoView.render();
 	},
 
-	search : function(address) {
-		this.navigate("search/" + address);
-		/* Show a back link if in detail view */
+	search : function(address, page) {
+		if (page == undefined) { page = 1; }
+
+		this.navigate("search/" + address + "/" + page);
+		/* Record the last query we did */
 		Dowsing.LastQuery = address;
+		Dowsing.Page = page;
+
 		$("#content").append("<div class=\"loading\"></div>");
 
 		var self = this;
 		geocoder = new google.maps.Geocoder();
 		geocoder.geocode({ address: decodeURIComponent(address) }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
-				$.getJSON(self.constructQueryURL(results[0].geometry.location, 0) + "&jsonCallback=?", self.processData);
+				$.getJSON(self.constructQueryURL(results[0].geometry.location, page) + "&jsonCallback=?", self.processData);
 			} else {
 				// Render error
 				self.navigate("home", true);
@@ -97,8 +108,8 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 	 * Constructs the query url for returning the neccesary data
 	 * Query: SELECT * FROM {Dowsing.FusionTableId} ORDER BY 
 	 *        ST_DISTANCE(Lat, LATLNG({location.lat()},{location.lng()}))
-	 *        OFFSET {start} LIMIT 10;
-	 * Returns: The call returns the 10 closest locations as calculated by ST_DISTANCE
+	 *        OFFSET {start} LIMIT {Dowsing.Results};
+	 * Returns: The call returns the {Dowsing.Results} closest locations as calculated by ST_DISTANCE
 	 *
 	 */
 	constructQueryURL : function(location, start) {	
@@ -106,7 +117,7 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 		url    += "SELECT+%2A+FROM+" + Dowsing.FusionTableId;
 		url    += "+ORDER+BY+ST_DISTANCE%28Lat%2CLATLNG%28";
 		url    += encodeURIComponent(location.lat()) + "%2C" + encodeURIComponent(location.lng()) + "%29%29";
-		url    += "+OFFSET+" + start + "+LIMIT+10";
+		url    += "+OFFSET+" + (start - 1) * Dowsing.Results + "+LIMIT+" + Dowsing.Results;
 		return url;
 	},
 
@@ -223,6 +234,7 @@ Dowsing.Views.Index = Backbone.View.extend({
 	render : function() {
 		var homeTemplate = Handlebars.compile($("#home-template").html());
 		this.el.html(homeTemplate({title: "Dowsing"}));
+		window.scrollTo(0, 1);
 	}
 });
 
@@ -256,6 +268,7 @@ Dowsing.Views.Info = Backbone.View.extend({
 	render : function() {
 		var homeTemplate = Handlebars.compile($("#info-template").html());
 		this.el.html(homeTemplate({title: "About Dowsing"}));
+		window.scrollTo(0, 1);
 	}
 });
 
@@ -264,9 +277,11 @@ Dowsing.Views.Results = Backbone.View.extend({
 	el : $("#content"),
 
 	events : {
-		"click #home" : "home",
-		"click #info" : "info",
-		"click .panel" : "showDetail"
+		"click #home"  : "home",
+		"click #info"  : "info",
+		"click .panel" : "showDetail",
+		"click .prev"  : "prev",
+		"click .next"  : "next"
 	},
 
 	initialize : function() {
@@ -293,12 +308,31 @@ Dowsing.Views.Results = Backbone.View.extend({
 		return false;
 	},
 
+	prev : function(e) {
+		$(".nav_btns").empty();
+		e.preventDefault();
+		$(".prev").css("display", "none");
+		Dowsing.router.navigate("search/" + Dowsing.LastQuery + "/" + (parseInt(Dowsing.Page) - 1), true);
+		return false;
+	},
+
+	next : function(e) {
+		$(".nav_btns").empty();
+		e.preventDefault();
+		$(".next").css("display", "none");
+		Dowsing.router.navigate("search/" + Dowsing.LastQuery + "/" + (parseInt(Dowsing.Page) + 1), true);
+		return false;
+	},
+
 	render : function() {
 		var resultTemplate = Handlebars.compile($("#result-template").html());
 		this.el.html(resultTemplate({
+			prev: (Dowsing.Page > 1) ? 1 : null,
+			next: (this.collection.length >= Dowsing.Results) ? 1 : null,
 			title: "Search Results",
 			results: this.collection.toJSON()
 		}));
+		window.scrollTo(0, 1);
 	}
 });
 
@@ -346,5 +380,6 @@ Dowsing.Views.Details = Backbone.View.extend({
 			row : this.model.toJSON()
 		});
 		self.el.html(content);
+		window.scrollTo(0, 1);
 	}
 });

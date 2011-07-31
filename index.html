@@ -78,7 +78,7 @@
 
 		<script id="result-template" type="text/x-handlebars-template">
 			{{> header}}
-				<div id="main" style="margin-left:2px !important;margin-right:5px !important;">
+			<div id="main" style="margin-left:2px !important;margin-right:5px !important;">
 				<ul id="results">
 					{{#each results}}
 					<li class="result">
@@ -95,7 +95,18 @@
 						</div>
 					</li>
 					{{/each}}
+					<div class="clear"></div>
 				</ul>
+				
+				<div class="nav_btns">
+				{{#if prev}}
+					<a href="#" class="button green prev">&laquo;&nbsp;Prev</a>
+				{{/if}}
+				{{#if next}}
+					<a href="#" class="button green next">Next&nbsp;&raquo;</a>
+				{{/if}}
+				</div>
+				<div class="clear"></div>
 			</div>
 		</script>
 
