@@ -1,0 +1,129 @@
+/* Make a nice border around the entire widget */
+#dowsing_canvas {
+	border: 1px solid #005F7E;
+	padding: 0;
+	margin: 0;
+}
+
+/* Both header box and footer box have the same gfx properties */
+.grad_box {
+	-webkit-box-shadow: 0px 1px 8px #999;
+	-moz-box-shadow: 0px 1px 8px #999;
+	box-shadow: 0px 1px 8px #999;
+	background: #26ADE4;
+	background: -webkit-gradient(linear, left top, left bottom, from(#26ADE4), to(#3299BB));
+	background: -moz-linear-gradient(top, #26ADE4, #3299BB);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26ADE4', endColorstr='#3299BB');
+	padding: 0;
+	margin: 0;
+	z-index: 999;
+}
+
+/* Styling for the header which includes the address box, search button and reset button */
+#dowsing_header {
+	height: 44px;
+	width: 100%;
+	z-index: 999;
+	overflow: hidden;
+	border-bottom: 1px solid #005F7E;
+}
+
+/* Styling for the address input box */
+#dowsing_header .text_input {
+	font-size: 18px;
+	padding: 3px;
+	width: 250px;
+	margin-top: 5px;
+	display: block;
+	float: left;
+	margin-left: 5px;
+}
+
+.clear { clear: both; }
+
+.input {
+	-webkit-border-radius: 0px;
+	border-radius: 0px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	float: left;
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding;
+	background-clip: padding-box;
+	background-color: white;
+	border: 1px solid;
+	color: black;
+	font-size: 18px;
+	font-family: Arial, sans-serif;
+	height: 32px;
+	margin-top: 5px;
+	margin-left: 10px;
+	display: inline-block;
+	-webkit-box-shadow: inset rgba(0, 0, 1, 0.2) 1px 1px 2px;
+	-moz-box-shadow: inset rgba(0, 0, 1, 0.2) 1px 1px 3px;
+	box-shadow: inset rgba(0, 0, 1, 0.2) 1px 1px 3px;
+	border-color: #848484 #C1C1C1 #E1E1E1;
+}
+
+.button {
+	color: white;
+	text-shadow: #476411 0px 1px 1px;
+	font-weight: bold;
+	background: #8FC22D;
+	background-image: -moz-linear-gradient(top, #96C84B, #5F9B2E);
+	background-image: -ms-linear-gradient(top, #96C84B, #5F9B2E);
+	background-image: -o-linear-gradient(top, #96C84B, #5F9B2E);
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#96C84B), to(#5F9B2E));
+	background-image: linear-gradient(top, #96C84B, #5F9B2E);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#96C84B', EndColorStr='#5F9B2E');
+	text-align: center;
+	padding: 4px 10px 5px 10px;
+	cursor: pointer;
+	border-bottom-color: #476411;
+	border-style: solid;
+	border-width: 1px;
+	border-left-color: #63891A;
+	border-right-color: #63891A;
+	border-top-color: #7BA925;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+}
+
+/* Styling for the bottom legend */
+#dowsing_legend {
+	height: 26px;
+	display: block;
+	width: 100%;
+	border-top: 1px solid #005F7E;
+	text-align: center;
+	padding: 0;
+	margin: 0;
+}
+
+/* List containing the legend entries */
+#dowsing_legend ul {
+	text-align: center;
+	list-style-type: none;
+	color: white;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	font-size: 16px;
+	line-height: 1.7;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#dowsing_legend ul li {
+	padding-right: 12px;
+	display: inline;
+	text-align: center;
+}
+
+#dowsing_legend ul li img {
+	padding-right: 3px;
+	height: 11px;
+	width: 11px;
+}

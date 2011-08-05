@@ -1,9 +1,5 @@
 Dowsing - Hamilton's swimming app
 
--mobile/
 This is the mobile version of Dowsing best for small screen devices.  Built on Backbone.js, zepto.js and Handlebars.js.  Completely client-side and gets it's data from a Google Fusion Table.
-
--desktop/
-This is the desktop version of Dowsing.  It can be embedded easily on any site.
 
 Author: Gavin Schulz <gavin.schulz@gmail.com>
