@@ -65,7 +65,7 @@ Dowsing.Header = function() {
 	var header = document.createElement('div');
 	header.id = 'dowsing_header';
 	header.className = 'grad_box';
-	header.innerHTML = '<input type="text" id="dowsing_address" class="text_input" value="Enter an address..."/><input type="submit" value="Search" id="dowsing_search" class="button input" onclick="javascript:Dowsing.ZoomToAddress();"/><input type="submit" value="Reset" class="button input" style="float:right !important;margin-right: 8px;" id="dowsing_reset" onclick="javascript:Dowsing.Reset()"/>';
+	header.innerHTML = '<input type="text" id="dowsing_address" class="text_input" value="Enter an address..." onfocus="if(this.value==\'Enter an address...\'){this.value=\'\';}" onblur="if(this.value==\'\'){this.value=\'Enter an address...\';}"/><input type="submit" value="Search" id="dowsing_search" class="button input" onclick="javascript:Dowsing.ZoomToAddress();"/><input type="submit" value="Reset" class="button input" style="float:right !important;margin-right: 8px;" id="dowsing_reset" onclick="javascript:Dowsing.Reset()"/>';
 	Dowsing.elem.appendChild(header);
 };
 
@@ -223,6 +223,7 @@ Dowsing.ZoomToAddress = function() {
 Dowsing.Reset = function() {
 	Dowsing.map.setCenter(Dowsing.center);
 	Dowsing.map.setZoom(Dowsing.zoom);
+	document.getElementById('dowsing_address').value = 'Enter an address...';
 }
 
 /*
