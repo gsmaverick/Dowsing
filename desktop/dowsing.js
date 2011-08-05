@@ -1,5 +1,8 @@
 // Create a new global wrapper of Dowsing
 var Dowsing = {
+	/* The base url we're serving the widget from */
+	base_url : 'http://openhamilton.ca/dowsing/desktop/',
+
 	/* Google Fusion Table Map Layers */
 	layer_1 : null,
 	layer_2 : null,
@@ -51,7 +54,7 @@ Dowsing.Display = function() {
 	css.setAttribute("rel", "stylesheet");
 	css.setAttribute("type", "text/css");
 	css.setAttribute("media", "all");
-	css.setAttribute("href", "http://172.20.0.231/~gavin/dowsing/desktop/style.css");
+	css.setAttribute("href", Dowsing.base_url + "style.css");
 	document.body.appendChild(css);
 };
 
@@ -64,6 +67,26 @@ Dowsing.Header = function() {
 	header.className = 'grad_box';
 	header.innerHTML = '<input type="text" id="dowsing_address" class="text_input" value="Enter an address..."/><input type="submit" value="Search" id="dowsing_search" class="button input" onclick="javascript:Dowsing.ZoomToAddress();"/><input type="submit" value="Reset" class="button input" style="float:right !important;margin-right: 8px;" id="dowsing_reset" onclick="javascript:Dowsing.Reset()"/>';
 	Dowsing.elem.appendChild(header);
+};
+
+/*
+ * Creates the bottom legend toolbar
+ */
+Dowsing.Legend = function() {
+	var legend       = document.createElement('div');
+	legend.id        = 'dowsing_legend';
+	legend.className = 'grad_box';
+
+	var contents = '<ul>';
+	contents    += '<li><img src="'+Dowsing.base_url+'sm_red.png" />Beach</li>';
+	contents    += '<li><img src="'+Dowsing.base_url+'sm_pink.png" />Outdoor Pool</li>';
+	contents    += '<li><img src="'+Dowsing.base_url+'sm_yellow.png" />Indoor Pool</li>';
+	contents    += '<li><img src="'+Dowsing.base_url+'sm_purple.png" />Splash Pad</li>';
+	contents    += '<li><img src="'+Dowsing.base_url+'sm_green.png" />Wading Pool</li>';
+	contents    += '</ul><div class="clear"></div>';
+
+	legend.innerHTML = contents;
+	Dowsing.elem.appendChild(legend);
 };
 
 /*
@@ -92,12 +115,7 @@ Dowsing.Show = function() {
 	Dowsing.map_canvas.style.width  = Dowsing.width + "px";
 	Dowsing.elem.appendChild(Dowsing.map_canvas);
 
-	var legend       = document.createElement('div');
-	legend.id        = 'dowsing_legend';
-	legend.className = 'grad_box';
-	legend.innerHTML = '<ul><li><img src="http://localhost/~gavin/dowsing/desktop/sm_red.png" />Beach</li><li><img src="http://localhost/~gavin/dowsing/desktop/sm_pink.png" />Outdoor Pool</li><li><img src="http://localhost/~gavin/dowsing/desktop/sm_yellow.png" />Indoor Pool</li><li><img src="http://localhost/~gavin/dowsing/desktop/sm_purple.png" />Splash Pad</li><li><img src="http://localhost/~gavin/dowsing/desktop/sm_green.png" />Wading Pool</li></ul><div class="clear"></div>';
-	Dowsing.elem.appendChild(legend);
-	
+	Dowsing.Legend();	
 
 	/* Draw a new google map */
 	Dowsing.map = new google.maps.Map(Dowsing.map_canvas, {
