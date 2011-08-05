@@ -239,4 +239,5 @@ Dowsing.Config = function( options ) {
 	Dowsing.elem.style.width  = Dowsing.width  + "px";
 };
 
+document.write(unescape("%3Cdiv id='dowsing_canvas' style='height:0px;width:0px;'%3E%3C/div%3E"));
 Dowsing.Display();

@@ -8,7 +8,6 @@ Simple paste the following script into your website where you want the widget to
 
     <script type="text/javascript">
       var DowsingConfig = { height: 500, width: 500 };
-      document.write(unescape("%3Cdiv id='dowsing_canvas' style='height:0px;width:0px;'%3E%3C/div%3E"));
       document.write(unescape("%3Cscript src='http://openhamilton.ca/dowsing/desktop/dowsing.js' type='text/javascript'%3E%3C/script%3E"));
 
     </script>
