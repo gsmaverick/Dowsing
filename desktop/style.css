@@ -32,6 +32,7 @@
 #dowsing_header .text_input {
 	font-size: 18px;
 	padding: 3px;
+	background: white;
 	width: 250px;
 	margin-top: 5px;
 	display: block;
@@ -43,6 +44,7 @@
 
 .input {
 	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
 	border-radius: 0px;
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -56,10 +58,8 @@
 	color: black;
 	font-size: 18px;
 	font-family: Arial, sans-serif;
-	height: 32px;
 	margin-top: 5px;
 	margin-left: 10px;
-	display: inline-block;
 	-webkit-box-shadow: inset rgba(0, 0, 1, 0.2) 1px 1px 2px;
 	-moz-box-shadow: inset rgba(0, 0, 1, 0.2) 1px 1px 3px;
 	box-shadow: inset rgba(0, 0, 1, 0.2) 1px 1px 3px;
@@ -78,7 +78,7 @@
 	background-image: linear-gradient(top, #96C84B, #5F9B2E);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorStr='#96C84B', EndColorStr='#5F9B2E');
 	text-align: center;
-	padding: 4px 10px 5px 10px;
+	padding: 4px 10px 4px 10px;
 	cursor: pointer;
 	border-bottom-color: #476411;
 	border-style: solid;
