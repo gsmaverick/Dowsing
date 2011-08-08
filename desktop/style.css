@@ -1,12 +1,24 @@
-/* Make a nice border around the entire widget */
-#dowsing_canvas {
-	border: 1px solid #005F7E;
-	padding: 0;
-	margin: 0;
+/* Localized css reset */
+#dowsing_canvas div, #dowsing_canvas ul, #dowsing_canvas li, #dowsing_canvas img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 
+#dowsing_canvas input { vertical-align: middle; font:99% sans-serif; margin: 0; }
+#dowsing_canvas input[type="submit"] { cursor: pointer; }
+#dowsing_canvas .clearfix:before, #dowsing_canvas .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+#dowsing_canvas .clearfix:after { clear: both; }
+#dowsing_canvas .clearfix { zoom: 1; }
+
+/* Make a nice border around the entire widget */
+#dowsing_canvas { border: 1px solid #005F7E; }
+
 /* Both header box and footer box have the same gfx properties */
-.grad_box {
+#dowsing_canvas .grad_box {
 	-webkit-box-shadow: 0px 1px 8px #999;
 	-moz-box-shadow: 0px 1px 8px #999;
 	box-shadow: 0px 1px 8px #999;
@@ -14,22 +26,19 @@
 	background: -webkit-gradient(linear, left top, left bottom, from(#26ADE4), to(#3299BB));
 	background: -moz-linear-gradient(top, #26ADE4, #3299BB);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#26ADE4', endColorstr='#3299BB');
-	padding: 0;
-	margin: 0;
 	z-index: 999;
 }
 
 /* Styling for the header which includes the address box, search button and reset button */
-#dowsing_header {
+#dowsing_canvas #dowsing_header {
 	height: 44px;
 	width: 100%;
-	z-index: 999;
 	overflow: hidden;
 	border-bottom: 1px solid #005F7E;
 }
 
 /* Styling for the address input box */
-#dowsing_header .text_input {
+#dowsing_canvas #dowsing_header .text_input {
 	font-size: 18px;
 	padding: 3px;
 	background: white;
@@ -40,9 +49,7 @@
 	margin-left: 5px;
 }
 
-.clear { clear: both; }
-
-.input {
+#dowsing_canvas .input {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
@@ -66,7 +73,7 @@
 	border-color: #848484 #C1C1C1 #E1E1E1;
 }
 
-.button {
+#dowsing_canvas .button {
 	color: white;
 	text-shadow: #476411 0px 1px 1px;
 	font-weight: bold;
@@ -92,38 +99,23 @@
 }
 
 /* Styling for the bottom legend */
-#dowsing_legend {
+#dowsing_canvas #dowsing_legend {
 	height: 26px;
 	display: block;
 	width: 100%;
 	border-top: 1px solid #005F7E;
 	text-align: center;
-	padding: 0;
-	margin: 0;
 }
 
 /* List containing the legend entries */
-#dowsing_legend ul {
+#dowsing_canvas #dowsing_legend #dowsing_list {
 	text-align: center;
 	list-style-type: none;
 	color: white;
-	margin: 0;
-	padding: 0;
 	display: inline;
 	font-size: 16px;
 	line-height: 1.7;
-	text-align: center;
-	vertical-align: middle;
 }
 
-#dowsing_legend ul li {
-	padding-right: 12px;
-	display: inline;
-	text-align: center;
-}
-
-#dowsing_legend ul li img {
-	padding-right: 3px;
-	height: 11px;
-	width: 11px;
-}
+#dowsing_canvas #dowsing_legend #dowsing_list li { padding-right: 12px; display: inline; text-align: center; }
+#dowsing_canvas #dowsing_legend #dowsing_list li .dowsing_image { padding-right: 3px; vertical-align: text; }

@@ -127,13 +127,13 @@ Dowsing.legend = function() {
 	legend.id        = 'dowsing_legend';
 	legend.className = 'grad_box';
 
-	var contents = '<ul>';
-	contents    += '<li><img src="'+this.baseUrl+'sm_red.png" />Beach</li>';
-	contents    += '<li><img src="'+this.baseUrl+'sm_pink.png" />Outdoor Pool</li>';
-	contents    += '<li><img src="'+this.baseUrl+'sm_yellow.png" />Indoor Pool</li>';
-	contents    += '<li><img src="'+this.baseUrl+'sm_purple.png" />Splash Pad</li>';
-	contents    += '<li><img src="'+this.baseUrl+'sm_green.png" />Wading Pool</li>';
-	contents    += '</ul><div class="clear"></div>';
+	var contents = '<ul id="dowsing_list">';
+	contents    += '<li><img src="'+this.baseUrl+'sm_red.png" class="dowsing_image"/>Beach</li>';
+	contents    += '<li><img src="'+this.baseUrl+'sm_pink.png" class="dowsing_image"/>Outdoor Pool</li>';
+	contents    += '<li><img src="'+this.baseUrl+'sm_yellow.png" class="dowsing_image"/>Indoor Pool</li>';
+	contents    += '<li><img src="'+this.baseUrl+'sm_purple.png" class="dowsing_image"/>Splash Pad</li>';
+	contents    += '<li><img src="'+this.baseUrl+'sm_green.png" class="dowsing_image"/>Wading Pool</li>';
+	contents    += '</ul><div class="clearfix"></div>';
 
 	legend.innerHTML = contents;
 	this.elem.appendChild(legend);
