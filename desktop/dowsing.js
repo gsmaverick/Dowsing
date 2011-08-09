@@ -95,6 +95,12 @@ var Dowsing = {
 Dowsing.display = function() {
 	this.elem = document.getElementById('dowsing_canvas');
 
+	// Ensures the element exists in the DOM, otherwise try again in a second
+	if (this.elem == null) {
+		setTimeout("Dowsing.display()", 1000);
+		return;
+	}
+
 	var script  = document.createElement("script");
 	script.type = "text/javascript";
 	script.src  = "http://maps.google.com/maps/api/js?sensor=false&callback=Dowsing.show";
