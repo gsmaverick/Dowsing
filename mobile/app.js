@@ -29,7 +29,7 @@ $(document).ready(function() {
 	Handlebars.registerHelper('staticMap', function(context) {
 		return '<img src="http://maps.googleapis.com/maps/api/staticmap?center=' + 
 			   context.row.Lat + ',' + context.row.Long + 
-			   '&zoom=15&size=200x150&maptype=roadmap&sensor=false&markers=color:red%7C' +
+			   '&zoom=15&size=283x240&maptype=roadmap&sensor=false&markers=color:red%7C' +
 			   context.row.Lat + ',' + context.row.Long + '" class="map" />';
 	});
 });
@@ -206,7 +206,8 @@ Dowsing.Routers.Spots = Backbone.Router.extend({
 					results.table.cols[index] == "Long" || 
 					results.table.cols[index] == "Facility Name" || 
 					results.table.cols[index] == "Address" || 
-					results.table.cols[index] == "City") {
+					results.table.cols[index] == "City" ||
+					results.table.cols[index] == "Type") {
 					// Add to row information
 					_row[results.table.cols[index].split(' ').join('_')] = row[index];
 				}

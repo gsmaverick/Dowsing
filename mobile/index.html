@@ -46,124 +46,117 @@
 					</li>
 				</ul>
 			</div>
-			<div class="clear"></div>
+			<div class="clearfix"></div>
 		</script>
 
 		<script id="home-template" type="text/x-handlebars-template">
 			{{> header}}
-			<div id="main">
+			<div id="main" class="index">
 				<h2>Find A Water Spot</h2>
 				<form>
-					<input type="text" size="25" placeholder="Enter your address" id="address" name="address" /><br/><br/>
+					<input type="text" size="25" placeholder="Enter your address" id="address" name="address" class="green" /><br/>
 					<input type="submit" id="find-location-submit" value="Search" class="button green">
 				</form>
-				<br/><h3 class="home">Dowsing helps you find pools, beaches and splash pads in Hamilton to help you cool off from the summer heat.  <!--If we are missing any water spots <a href="#">let us know.</a></h3>-->
-				<br/><br/><br/>
+				<br/><p class="home">Dowsing helps you find pools, beaches and splash pads in Hamilton to help you cool off from the summer heat.</p>
+				<br/><br/>
 			</div>
 		</script>
 
 		<script id="info-template" type="text/x-handlebars-template">
 			{{> header}}
-			<div id="main">
+			<div id="main" class="index">
 				<h2>About Dowsing</h2>
 				<p class="info">
-					Dowsing helps you find places to cool off near you in Hamilton.  Dowsing takes its name from the practice of the using two rods to find water underground. (<a href="http://en.wikipedia.org/wiki/Dowsing">Wikipedia</a>)
-					<br/><br/>
-					It is supported by <a href="http://www.openhamilton.ca">Open Hamilton</a>.  You can join our <a href="http://groups.google.com/group/openhamilton">Google Group</a> for the latest Open Hamilton news and to join us in using data for a better Hamilton.
-					<br/><br/>
-					The icons used are from the great <a href="http://mapicons.nicolasmollet.com/">Google Maps Icons</a> set provided by <a href="http://nicolasmollet.com/">Nicolas Mollet</a>.&nbsp;&nbsp;You can find the code for Dowsing on <a href="http://github.com/gsmaverick/dowsing">GitHub</a>.
+					Dowsing helps you find places to cool off near you in Hamilton.  Dowsing takes its name from the practice of the using two rods to find water underground. (<a href="http://en.wikipedia.org/wiki/Dowsing">Wikipedia</a>).<br/><br/>It is supported by <a href="http://www.openhamilton.ca">Open Hamilton</a>.  You can join our <a href="http://groups.google.com/group/openhamilton">Google Group</a> for the latest Open Hamilton news and to join us in using data for a better Hamilton.<br/><br/>The icons used are from the great <a href="http://mapicons.nicolasmollet.com/">Google Maps Icons</a> set provided by <a href="http://nicolasmollet.com/">Nicolas Mollet</a>.&nbsp;&nbsp;You can find the code for Dowsing on <a href="http://github.com/gsmaverick/dowsing">GitHub</a>.
 				</p>
 			</div>
 		</script>
 
 		<script id="result-template" type="text/x-handlebars-template">
 			{{> header}}
-			<div id="main" style="margin-left:2px !important;margin-right:5px !important;">
+			<div id="main">
 				<ul id="results">
 					{{#each results}}
 					<li class="result">
-						<div class="icon sprite-{{Icon}}"></div>
+						<div class="icon sprite sprite-{{Icon}}"></div>
 						<div class="panel" tag="{{Lat}}_{{Long}}">
-							<div style="float:left;width:100%;">
-								<div style="margin-right:34px;">
-										<h3>{{Facility_Name}}</h3>
-									<h5>{{Address}}, {{City}}</h5>
-								</div>
-							</div>
+							<h3>{{Facility_Name}}</h3>
+							<h5><i>{{Type}}</i></h5>
+							<h5>{{Address}}, {{City}}</h5>
 							<div class="disclosure"></div>
-							<div class="clear"></div>
+							<div class="clearfix"></div>
 						</div>
 					</li>
 					{{/each}}
-					<div class="clear"></div>
+					<div class="clearfix"></div>
 				</ul>
 				
 				<div class="nav_btns">
-				{{#if prev}}
-					<a href="#" class="button green prev">&laquo;&nbsp;Prev</a>
-				{{/if}}
-				{{#if next}}
-					<a href="#" class="button green next">Next&nbsp;&raquo;</a>
-				{{/if}}
+					{{#if prev}}
+						<a href="#" class="button green prev">&laquo;&nbsp;Prev</a>
+					{{/if}}
+					{{#if next}}
+						<a href="#" class="button green next">Next&nbsp;&raquo;</a>
+					{{/if}}
 				</div>
-				<div class="clear"></div>
 			</div>
 		</script>
 
 		<script id="detail-template" type="text/x-handlebars-template">
 			{{> header}}
-			<div id="main" style="margin-left:2px !important;margin-right:5px !important;">
+			<div id="main">
 				<a href="#" class="back" style="display:{{canGoBack}};">&laquo;&nbsp;Back to results</a>
+				{{#with row}}
 				<div class="detail">
-					{{#with row}}
-					<div class="icon sprite-{{Icon}}"></div>
-					<div class="panel">
-						<h3>{{Facility_Name}}</h3>
-						<h4>{{Type}}</h4>
-						<h5><b>Address:&nbsp;</b>&nbsp;{{Address}},&nbsp;{{City}}</h5>
+					<h3><div class="icon sprite sprite-{{Icon}}"></div>{{Facility_Name}}</h3>
+					<h5 class="type">{{Type}}</h5>
+					<div class="clearfix"></div>
+					<table border="0" cellspacing="0" cellpadding="0">
+						<tr>
+							<td><b>Address:</b></td>
+							<td>{{Address}},&nbsp;{{City}}</td>
+						</tr>
 						{{#if Phone}}
-							<h5><b>Phone:&nbsp;</b>&nbsp;{{Phone}}</h5>
+						<tr>
+							<td><b>Phone:</b></td>
+							<td>{{Phone}}</td>
+						</tr>
 						{{/if}}
 						{{#if Website}}
-							<h5><b>Website:&nbsp;</b>&nbsp;<a href="{{Website}}">{{Facility_Name}}</a></h5>
+						<tr>
+							<td><b>Website:</b></td>
+							<td><a href="{{Website}}">{{Facility_Name}}</a></td>
+						</tr>
 						{{/if}}
 						{{#if Email}}
-							<h5><b>Email:&nbsp;</b>&nbsp;<a href="mailto:{{Email}}">{{Email}}</a></h5>
+						<tr>
+							<td><b>Email:</b></td>
+							<td><a href="mailto:{{Email}}">{{Email}}</a></td>
+						</tr>
 						{{/if}}
 						{{#if Hours}}
-							<h5><b>Hours:&nbsp;</b>&nbsp;{{Hours}}</h5>
+						<tr>
+							<td><b>Hours:</b></td>
+							<td>{{Hours}}</td>
+						</tr>
 						{{/if}}
 						{{#if Heat_Wave_Extended_Hours}}
-							<h5><b>Heat Wave Extended Hours:&nbsp;</b>&nbsp;{{Heat_Wave_Extended_Hours}}</h5>
+						<tr>
+							<td><b>Heat Wave Extended Hours:</b></td>
+							<td>{{Heat_Wave_Extended_Hours}}</td>
+						</tr>
 						{{/if}}
 						{{#if Beach_Conditions_Link}}
-							<h5><b>Beach Conditions:&nbsp;</b>&nbsp;<a href="{{Beach_Conditions_Link}}">{{Beach_Conditions_Link}}</a></h5>
+						<tr>
+							<td><b>Beach Conditions:</b></td>
+							<td><a href="{{Beach_Conditions_Link}}">{{Beach_Conditions_Link}}</a></td>
+						</tr>
 						{{/if}}
-						{{#if Cost}}
-							<h5><b>Cost:&nbsp;</b>&nbsp;{{{Cost}}}
-						{{/if}}
-						{{#if Child_Cost}}
-							<h5><b style="float:left">Fees:&nbsp;</b>
-							<table class="fees">
-								<tr class="title">
-									<td>Child</td>
-									<td>Youth</td>
-									<td>Adult</td>
-								</tr>
-								<tr>
-									<td>${{showCost Child_Cost}}</td>
-									<td>${{showCost Youth_Cost}}</td>
-									<td>${{showCost Adult_Cost}}</td>
-								</tr>
-							</table>
-							<div clear="clear"></div>
-							</h5>
-						{{/if}}
-						<h5><b>Map:&nbsp;</b>&nbsp;{{{staticMap ..}}}</h5>
-						<br/>
-					</div>
-					{{/with}}
+						<tr><th colspan="2" align="left"><b>Map:</b></th></tr>
+						<tr><th colspan="2">{{{staticMap ..}}}</th></tr>
+					</table>
 				</div>
+				{{/with}}
 			</div>
 		</script>
 	</body>
